@@ -1,5 +1,7 @@
 package com.lambdaschool.day1project.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +26,7 @@ public class Agent
     private String country;
 
     @OneToMany(mappedBy = "agent", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("agent")
     private List<Customer> customers = new ArrayList<>();
 
     public Agent()

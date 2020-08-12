@@ -1,5 +1,7 @@
 package com.lambdaschool.day1project.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,11 +27,13 @@ public class Order
 
     @ManyToOne
     @JoinColumn(name = "custcode", nullable = false)
+    @JsonIgnoreProperties("orders")
     private Customer customer;
 
     @ManyToMany
     @JoinTable(name = "orderspayments",
             joinColumns = @JoinColumn(name = "ordnum"), inverseJoinColumns = @JoinColumn(name = "paymentid"))
+    @JsonIgnoreProperties("orders")
     private Set<Payment> payments = new HashSet<>();
 
     public Order()

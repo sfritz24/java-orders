@@ -1,5 +1,7 @@
 package com.lambdaschool.day1project.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,9 +34,11 @@ public class Customer
 
     @ManyToOne
     @JoinColumn(name = "agentcode", nullable = false)
+    @JsonIgnoreProperties("customers")
     private Agent agent;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("customer")
     private List<Order> orders = new ArrayList<>();
 
     public Customer()

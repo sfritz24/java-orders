@@ -1,6 +1,8 @@
 package com.lambdaschool.day1project.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class Payment
     private String type;
 
     @ManyToMany(mappedBy = "payments")
+    @JsonIgnoreProperties("payments")
     private Set<Order> orders = new HashSet<>();
 
     public Payment()
